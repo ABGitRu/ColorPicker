@@ -9,11 +9,41 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    @IBOutlet var screenView: UIView!
+    
+    @IBOutlet var redValueLabel: UILabel!
+    @IBOutlet var greenValueLabel: UILabel!
+    @IBOutlet var blueValueLabel: UILabel!
+    
+    @IBOutlet var redSlider: UISlider!
+    @IBOutlet var greenSlider: UISlider!
+    @IBOutlet var blueSlider: UISlider!
+    
+    
+
+    @IBAction func redSliderChanged() {
+        changeValueText()
+        changeColor()
     }
-
-
+    
+    @IBAction func greenSliderChanged() {
+        changeValueText()
+        changeColor()
+    }
+    
+    @IBAction func blueSliderChanged() {
+        changeValueText()
+        changeColor()
+    }
+    
+    private func changeColor() {
+        screenView.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: 1)
+    }
+    
+    private func changeValueText() {
+        redValueLabel.text = String(format: "%.2f", redSlider.value)
+        greenValueLabel.text = String(format: "%.2f", greenSlider.value)
+        blueValueLabel.text = String(format: "%.2f", blueSlider.value)
+    }
 }
 
