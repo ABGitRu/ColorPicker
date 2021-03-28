@@ -92,7 +92,7 @@
                                                 <color key="maximumTrackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                                 <color key="thumbTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                                 <connections>
-                                                    <action selector="redSliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="jVB-5W-QhL"/>
+                                                    <action selector="sliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="jVB-5W-QhL"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="xJB-6v-uRz" userLabel="Green Slider">
@@ -101,7 +101,7 @@
                                                 <color key="maximumTrackTintColor" systemColor="systemGreenColor"/>
                                                 <color key="thumbTintColor" systemColor="systemGreenColor"/>
                                                 <connections>
-                                                    <action selector="greenSliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="q7S-l6-fBD"/>
+                                                    <action selector="sliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="frw-3d-2OX"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="SJQ-Jl-R6q" userLabel="Blue Slider">
@@ -110,7 +110,7 @@
                                                 <color key="maximumTrackTintColor" systemColor="systemBlueColor"/>
                                                 <color key="thumbTintColor" systemColor="systemBlueColor"/>
                                                 <connections>
-                                                    <action selector="blueSliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="use-3e-EIM"/>
+                                                    <action selector="sliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="Wvh-xo-89V"/>
                                                 </connections>
                                             </slider>
                                         </subviews>

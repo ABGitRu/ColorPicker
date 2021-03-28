@@ -19,25 +19,16 @@ class ViewController: UIViewController {
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
     
-    
-
-    @IBAction func redSliderChanged() {
-        changeValueText()
-        changeColor()
-    }
-    
-    @IBAction func greenSliderChanged() {
-        changeValueText()
-        changeColor()
-    }
-    
-    @IBAction func blueSliderChanged() {
+    @IBAction func sliderChanged() {
         changeValueText()
         changeColor()
     }
     
     private func changeColor() {
-        screenView.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: 1)
+        screenView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
+                                             green: CGFloat(greenSlider.value),
+                                             blue: CGFloat(blueSlider.value),
+                                             alpha: 1)
     }
     
     private func changeValueText() {
