@@ -7,11 +7,13 @@
 
 import UIKit
 
-protocol ScreenBGDelegate {
-    func changeBG() -> UIColor?
+protocol SettingViewControllerDelegate {
+    func setColor(_ color: UIColor)
 }
 
 class SettingsViewController: UIViewController {
+    
+    var delegate: SettingViewControllerDelegate?
     
     @IBOutlet var screenView: UIView! {
         didSet {
@@ -34,11 +36,14 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         screenView.backgroundColor = screenColor
+//        setDefaults()
+        
         setValue(for: redValueLabel, greenValueLabel, blueValueLabel)
         addDoneButton()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         self.view.endEditing(true)
     }
     
@@ -50,6 +55,7 @@ class SettingsViewController: UIViewController {
         case greenSlider: setValue(for: greenValueLabel)
         default: setValue(for: blueValueLabel)
         }
+        delegate?.setColor(screenView.backgroundColor!)
     }
     
     private func changeColor() {
@@ -72,6 +78,16 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    private func setDefaults() {
+        guard let red = screenView.backgroundColor?.ciColor.red else { return }
+        guard let green = screenView.backgroundColor?.ciColor.green else { return }
+        guard let blue = screenView.backgroundColor?.ciColor.blue else { return }
+        print(red)
+//        redSlider.value = Float(red)
+//        greenSlider.value = Float(green)
+//        blueSlider.value = Float(blue)
+    }
+    
     private func string(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
     }
@@ -80,11 +96,13 @@ class SettingsViewController: UIViewController {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let button = UIBarButtonItem(title: "Done",
-                                     style: UIBarButtonItem.Style.done,
+                                     style: .done,
                                      target: self,
                                      action: #selector(dismissKeyboard))
-        
-        toolBar.setItems([button], animated: true)
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                            target: nil,
+                                            action: nil)
+        toolBar.setItems([flexibleSpace, button], animated: true)
         toolBar.isUserInteractionEnabled = true
         for textfield in colorsTF{
             textfield.inputAccessoryView = toolBar
@@ -97,10 +115,8 @@ class SettingsViewController: UIViewController {
 }
 
 
-extension SettingsViewController: ScreenBGDelegate, UITextFieldDelegate {
-    func changeBG() -> UIColor? {
-        screenView.backgroundColor
-    }
+extension SettingsViewController: UITextFieldDelegate {
+
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else { return }

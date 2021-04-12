@@ -10,19 +10,24 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    var delegate: ScreenBGDelegate!
     
+
     @IBAction func unwind( _ seg: UIStoryboardSegue) {
-        guard let segue = seg.source as? SettingsViewController  else { return }
-        delegate = segue.self
-        self.view.backgroundColor = delegate.changeBG()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let settingsVS = segue.destination as? SettingsViewController else { return }
-        settingsVS.screenColor = self.view.backgroundColor
+        guard let settingsVC = segue.destination as? SettingsViewController else { return }
+        settingsVC.screenColor = view.backgroundColor
+        
+        settingsVC.delegate = self
     }
     
+}
+
+extension MainViewController: SettingViewControllerDelegate {
+    func setColor(_ color: UIColor) {
+            view.backgroundColor = color
+        }
 }
 
 
